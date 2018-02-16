@@ -57,7 +57,7 @@
     "build": "gulp webpack",
     "component": "gulp component",
     "serve": "gulp serve",
-    "start": "gulp serve",
+    "start": "node app.js",
     "test": "karma start",
     "watch": "gulp serve",
     "webpack": "gulp webpack"
@@ -81,5 +81,9 @@
       "es2015",
       "stage-0"
     ]
+  },
+  "engines": {
+    "node": "7.2.0",
+    "npm": "3.10.9"
   }
 }
