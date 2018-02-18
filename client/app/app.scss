@@ -2,6 +2,16 @@
 
 .app {
   height: 100%;
-  background-color: $lightBgColor;
+  margin: 0px;
+  padding: 0px;
+  background-color: $bgColor;
+}
+
+.top-bar {
+    display: block;
+    background-color: $blackColor;
+    color: $whiteColor;
+    font-size: 12px;
+    height: 35px;
 }
 

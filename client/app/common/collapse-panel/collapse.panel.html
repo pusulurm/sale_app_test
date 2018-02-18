@@ -1,0 +1,11 @@
+<section>
+    <div class="panel-heading">
+        <h3>{{colpsPan.panelTitle}}</h3>
+        <span ng-click="colpsPan.isCollapsed = !colpsPan.isCollapsed">
+            <i class="fa fa-angle-down"></i>
+        </span>    
+    </div>    
+    <div ng-show="!colpsPan.isCollapsed" class="panel-content">
+    <ng-transclude></ng-transclude>
+    </div>
+</section>
