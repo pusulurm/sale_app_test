@@ -8,6 +8,7 @@ class ProductsListController {
         "$150 - $300s",
         "Above $300"
     ];
+    this.isFilterCollapsed = false;
   }
 }
 

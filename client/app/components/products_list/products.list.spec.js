@@ -1,6 +1,6 @@
 import ProductsListModule from './products.list.module'
 
-describe('Home', () => {
+describe('Products List', () => {
   let $rootScope, $state, $location, $componentController, $compile;
 
   beforeEach(window.module(ProductsListModule));
@@ -31,7 +31,7 @@ describe('Home', () => {
       });
     });
 
-    it('has a name property', () => { // erase if removing this.name from the controller
+    it('has a selectableOptions property', () => { // erase if removing this.name from the controller
       expect(controller).to.have.property('selectableOptions');
     });
   });
@@ -42,13 +42,16 @@ describe('Home', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      template = $compile('<productsList></productsList>')(scope);
+      template = $compile('<products-list></products-list>')(scope);
       scope.$apply();
     });
 
-    it('has name in template', () => {
-      expect(template.find('h1').html()).to.eq('Found in home.html');
+    it('has collapse-panel in template', () => {
+      expect(template.find('collapse-panel')).to.not.null;
     });
 
+    it('has checkbox-list in template', () => {
+      expect(template.find('checkbox-list')).to.not.null;
+    });
   });
 });

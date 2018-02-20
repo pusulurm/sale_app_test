@@ -2,7 +2,7 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ProductsListComponent from './products.list.component';
 import checkboxListModule from '../../common/check-box-list/checkbox.list.module';
-import collapsePanelModule from '../../common/collapse-panel/collapse.panel.module'
+import collapsePanelModule from '../../common/collapse-panel/collapse.panel.module';
 let productsListModule = angular.module('productsListMod', [
   uiRouter,
   checkboxListModule,
