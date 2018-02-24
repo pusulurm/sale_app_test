@@ -14,11 +14,11 @@ let productsListModule = angular.module('productsListMod', [
 
   $urlRouterProvider.otherwise('/');
 
-  $stateProvider
-    .state('productsList', {
-      url: '/',
-      component: 'productsList'
-    });
+  // $stateProvider
+  //   .state('productsList', {
+  //     url: '/',
+  //     component: 'productsList'
+  //   });
 })
 
 .component('productsList', ProductsListComponent)
