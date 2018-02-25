@@ -1,16 +1,10 @@
 <main>
   <div class="filters-pane">
   <h2>Sidebar Content Here</h2>
-  <tree-view 
-      role-list = "$ctrl.roleList"
-      tree-id = "TestTreeView"
-      data-angular-treeview="true"
-      data-tree-model="roleList"
-      data-node-id="roleId"
-      data-node-label="roleName"
-      data-node-children="children">
-
-  </tree-view>
   <star-rating rating-value="$ctrl.rating.current" max="$ctrl.rating.max" on-rating-selected="$ctrl.rating.getSelectedRating(rating)"></star-rating>
+
+  <tree-view on-selection-change = "$ctrl.treeSelectionChange" node-list = "$ctrl.roleList">
+  </tree-view>
+
   </div>
 </main>

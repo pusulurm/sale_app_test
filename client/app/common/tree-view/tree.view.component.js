@@ -5,7 +5,9 @@ import './tree.view.scss';
 
 let TreeViewComponent = {
   bindings: {
-      roleList : '<'      
+      nodeList : '<',
+      selectedNode : '<',
+      onSelectionChange : '<'      
   },
   template,
   controller : TreeViewController,

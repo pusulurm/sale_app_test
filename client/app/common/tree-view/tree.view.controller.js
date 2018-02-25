@@ -1,75 +1,54 @@
 class TreeViewController {
-  constructor(scope, element, attrs, $compile) {
-    //console.error('From TreView controler')
-        var self = this;
-        //tree id
-				var treeId = attrs.treeId;
-			
-				//tree model
-				var treeModel = 'treeView.' + attrs.treeModel;
+	constructor() {
+	}
 
-				//node id
-				var nodeId = attrs.nodeId || 'id';
+	setParentOfChildNodes(node){
+		var self = this;
+		if(node.children && node.children.length > 0){
+			node.children.forEach(childNode =>{
+				childNode.parent = node;
+				self.setParentOfChildNodes(childNode);
+			})
+		}
+	}
 
-				//node label
-				var nodeLabel = attrs.nodeLabel || 'label';
+	unselectAChildNodes(node){
+		var self = this;
+		node.selected = false;
+		if(node.children && node.children.length > 0){
+			node.children.forEach(childNode =>{
+				self.unselectAChildNodes(childNode);
+			})
+		}
+	}
 
-				//children
-				var nodeChildren = attrs.nodeChildren || 'children';
+	unselectAllNodes(){
+		var self = this;
+		this.nodeList.forEach(node => {
+			self.unselectAChildNodes(node);
+		})
+	}
 
-				//tree template
-				var template =
-					'<ul>' +
-						'<li data-ng-repeat="node in ' + treeModel + '">' +
-							'<i class="collapsed" data-ng-show="node.' + nodeChildren + '.length && node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
-							'<i class="expanded" data-ng-show="node.' + nodeChildren + '.length && !node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
-							'<i class="normal" data-ng-hide="node.' + nodeChildren + '.length"></i> ' +
-							'<span data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node)">{{node.' + nodeLabel + '}}</span>' +
-							'<div data-ng-hide="node.collapsed" data-tree-id="' + treeId + '" data-tree-model="node.' + nodeChildren + '" data-node-id=' + nodeId + ' data-node-label=' + nodeLabel + ' data-node-children=' + nodeChildren + '></div>' +
-						'</li>' +
-					'</ul>';
+	onNodeSelected(currentNode){
+		currentNode.collapsed = !currentNode.collapsed;
 
+		if(currentNode.selected){
+			return;
+		}
 
-				//check tree id, tree model
-				if( treeId && treeModel ) {
+		this.unselectAllNodes();
+		currentNode.selected = true;
+		this.onSelectionChange(currentNode);
+	}
 
-					//root node
-					if( attrs.angularTreeview ) {
-					
-						//create tree object if not exists
-						self.treeId = self.treeId || {};
-
-						//if node head clicks,
-						self.treeId.selectNodeHead = self.treeId.selectNodeHead || function( selectedNode ){
-							//Collapse or Expand
-							selectedNode.collapsed = !selectedNode.collapsed;
-						};
-
-						//if node label clicks,
-						self.treeId.selectNodeLabel = self.treeId.selectNodeLabel || function( selectedNode ){
-
-							//remove highlight from previous node
-							if( self.treeId.currentNode && self.treeId.currentNode.selected ) {
-								self.treeId.currentNode.selected = undefined;
-							}
-
-							//set highlight to selected node
-							selectedNode.selected = 'selected';
-
-							//set currentNode
-							self.treeId.currentNode = selectedNode;
-						};
-					}
-
-
-          //console.error($compile( template )( self ));
-
-					//Rendering template.
-					//element.html('').append( $compile( template )( self ) );
-				}
-  }
+	$onInit() {
+		var self = this;
+		self.nodeList.forEach(node =>{
+			self.setParentOfChildNodes(node);
+		})
+	}
 }
 
-TreeViewController.$inject = ['$scope', '$element', '$attrs', '$compile'];
+TreeViewController.$inject = [];
 
 export default TreeViewController;
