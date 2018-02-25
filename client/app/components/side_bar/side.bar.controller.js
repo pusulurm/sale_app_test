@@ -14,7 +14,7 @@ class SidebarController {
         labelSelected: "a8"
       }
     }
-    this.dataForTheTree =
+    this.dataForTheTree =    
       [
         {
           "name": "Joe", "age": "21", "children": [
@@ -34,7 +34,49 @@ class SidebarController {
         { "name": "Albert", "age": "33", "children": [] },
         { "name": "Ron", "age": "29", "children": [] }
       ];
+
+      this.roleList = [
+        { "roleName" : "User", "roleId" : "role1", "children" : [
+          { "roleName" : "subUser1", "roleId" : "role11", "collapsed" : true, "children" : [] },
+          { "roleName" : "subUser2", "roleId" : "role12", "collapsed" : true, "children" : [
+            { "roleName" : "subUser2-1", "roleId" : "role121", "children" : [
+              { "roleName" : "subUser2-1-1", "roleId" : "role1211", "children" : [] },
+              { "roleName" : "subUser2-1-2", "roleId" : "role1212", "children" : [] }
+            ]}
+          ]}
+        ]},
+
+        { "roleName" : "Admin", "roleId" : "role2", "children" : [
+          { "roleName" : "subAdmin1", "roleId" : "role11", "collapsed" : true, "children" : [] },
+          { "roleName" : "subAdmin2", "roleId" : "role12", "children" : [
+            { "roleName" : "subAdmin2-1", "roleId" : "role121", "children" : [
+              { "roleName" : "subAdmin2-1-1", "roleId" : "role1211", "children" : [] },
+              { "roleName" : "subAdmin2-1-2", "roleId" : "role1212", "children" : [] }
+            ]}
+          ]}
+        ]},
+
+        { "roleName" : "Guest", "roleId" : "role3", "children" : [
+          { "roleName" : "subGuest1", "roleId" : "role11", "children" : [] },
+          { "roleName" : "subGuest2", "roleId" : "role12", "collapsed" : true, "children" : [
+            { "roleName" : "subGuest2-1", "roleId" : "role121", "children" : [
+              { "roleName" : "subGuest2-1-1", "roleId" : "role1211", "children" : [] },
+              { "roleName" : "subGuest2-1-2", "roleId" : "role1212", "children" : [] }
+            ]}
+          ]}
+        ]}
+      ];
+
+  this.rating = {
+    current : 4,
+    max : 5,
+    getSelectedRating: (newRating) => {
+      console.error('New Rating :: ' + newRating);
+    }
   }
+
+
+}
 }
 
 export default SidebarController;

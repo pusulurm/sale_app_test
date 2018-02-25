@@ -15,6 +15,7 @@ module.exports = function (config) {
 
     plugins: [
       require("karma-chai"),
+      require("chai-spies"),
       require("karma-chrome-launcher"),
       require("karma-mocha"),
       require("karma-mocha-reporter"),

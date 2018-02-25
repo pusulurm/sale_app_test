@@ -6,8 +6,6 @@ import sidebarComponent from './side.bar.component';
 
 var sidebarModuleName = 'sephora.test.side.bar';
 
-console.error(treeControlMod);
-
 angular.module(sidebarModuleName, [
   uiRouter
 ])
