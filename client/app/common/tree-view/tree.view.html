@@ -1,7 +1,7 @@
 <div class="tree-view">
     <ul>
         <li ng-repeat="node in treeView.nodeList">
-            <span ng-class="{'item-selected' : node.selected === true, 'has-child-item' : node.children && node.children.length > 0}" ng-click="treeView.onNodeSelected(node)">{{node.value}} - {{node.selected}}</span>
+            <span ng-class="{'item-selected' : node.selected === true, 'has-child-item' : node.children && node.children.length > 0}" ng-click="treeView.onNodeSelected(node)">{{node.value}}</span>
             <tree-view ng-if="node.children && node.children.length" on-selection-change = "treeView.onSelectionChange" ng-hide="node.collapsed"  
                        node-list="node.children" >
             </tree-view>

@@ -83,6 +83,7 @@ class SidebarController {
       }
     ];
 
+    this.isRootElement = true;
     self.selectedTreeNode = null;
     this.onBreadcrumbSelectionChanged = function (node) {
       console.error('Selected node from Breadcrumb');

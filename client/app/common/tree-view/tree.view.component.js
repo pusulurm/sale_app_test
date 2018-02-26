@@ -5,6 +5,7 @@ import './tree.view.scss';
 
 let TreeViewComponent = {
   bindings: {
+      isRootElement : '<',
       nodeList : '<',
       selectedNode : '<',
       onSelectionChange : '<'      

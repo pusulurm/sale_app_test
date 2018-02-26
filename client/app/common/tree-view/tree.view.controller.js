@@ -1,5 +1,6 @@
 class TreeViewController {
-	constructor() {
+	constructor(scope) {
+		this.scope = scope;
 	}
 
 	setParentOfChildNodes(node) {
@@ -30,18 +31,22 @@ class TreeViewController {
 		})
 	}
 
-	onNodeSelected(currentNode, dontInformClient = false) {
-
+	onNodeSelected(currentNode) {
 		if (currentNode.selected) {
 			currentNode.collapsed = !currentNode.collapsed;
 			return;
 		}
+		this.scope.$emit('treeSelectionChanged', currentNode);
+	}
 
-		this.unselectAllNodes();
-		currentNode.collapsed = !currentNode.collapsed;
-		currentNode.selected = true;
-		if (!dontInformClient) {
-			this.onSelectionChange(currentNode);
+	expandCurrentTree(node) {
+		node.collapsed = !node.collapsed;
+		if (!node.collapsed) {
+			let parent = node.parent;
+			while (parent) {
+				parent.collapsed = false;
+				parent = parent.parent;
+			}
 		}
 	}
 
@@ -50,34 +55,46 @@ class TreeViewController {
 		self.nodeList.forEach(node => {
 			self.setParentOfChildNodes(node);
 		})
+
+		self.scope.$on("treeSelectionChanged", (event, args) => {
+			if (self.isRootElement) {
+				self.unselectAllNodes();
+				let copy = self.findANodeByValue(this.nodeList, args.value);
+				self.expandCurrentTree(copy);
+				copy.selected = true;
+				this.onSelectionChange(copy);
+			}
+		});
 	}
 
-	getSelectedNodeFromList(selectedNode) {
-		let selectedItem = null;
+	findANodeByValue(nodeArray, value) {
+		var self = this, matchedNode = null;
 
-		//while (!selectedItem) {
-			this.nodeList.forEach(item => {
-				if (item.value === selectedNode.value) {
-					selectedItem = item;
-				}
-			})
-		//}
-		return selectedItem;
+		var findNode = function (nodes, value) {
+			if (!matchedNode && nodes && nodes.length > 0) {
+				nodes.forEach(item => {
+					if (matchedNode) return;
+					if (item.value === value) {
+						matchedNode = item;
+						return;
+					}
+					if (item.children && item.children.length > 0) {
+						findNode(item.children, value);
+					}
+				})
+			}
+		}
+		findNode(nodeArray, value);
+		return matchedNode;
 	}
 
 	$onChanges(changes) {
-		// console.error('$onChanges fired');
-		// if (!changes.selectedNode.isFirstChange()) {
-		// 	console.error('$onChanges fired 123');
-		// 	if (this.nodeList && this.nodeList.length > 0) {
-		// 		console.error(changes.selectedNode);
-		// 		let copy = this.getSelectedNodeFromList(changes.selectedNode);
-		// 		this.onNodeSelected(copy, true);
-		// 	}
-		// }
+		if (!changes.selectedNode.isFirstChange()) {
+			this.scope.$emit('treeSelectionChanged', changes.selectedNode.currentValue);
+		}
 	}
 }
 
-TreeViewController.$inject = [];
+TreeViewController.$inject = ['$scope'];
 
 export default TreeViewController;

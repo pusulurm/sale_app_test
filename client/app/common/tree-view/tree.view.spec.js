@@ -25,11 +25,15 @@ describe('Tree View', () => {
 
   describe('Controller', () => {
     // controller specs
-    let controller;
+    let controller, scope = null;
     beforeEach(() => {
+      scope = $rootScope.$new();
       controller = $componentController('treeView', {
-        $scope: $rootScope.$new()
+        $scope: scope
       });
+
+      sinon.spy(scope, '$emit');
+      sinon.spy(scope, '$on');
     });
 
     describe('$onInit method', () => {
@@ -39,6 +43,15 @@ describe('Tree View', () => {
         controller.$onInit();
         sinon.assert.calledTwice(controller.setParentOfChildNodes);
       })
+
+      it('should subscribe to treeSelectionChanged event', () => {
+        controller.setParentOfChildNodes = sinon.spy();
+        controller.nodeList = sampleNodes;
+        controller.$onInit();
+        sinon.assert.calledOnce(scope.$on);
+        sinon.assert.calledWith(scope.$on, 'treeSelectionChanged');
+      });
+
     });
 
     describe('onNodeSelected method', () => {
@@ -48,37 +61,63 @@ describe('Tree View', () => {
         controller.onSelectionChange = sinon.spy();
       });
 
-      it('should collapse node when it is expanded', () => {
-        let currentNode = {};
+      it('should collapse a node when it is expanded and selected', () => {
+        let currentNode = { selected: true };
         controller.onNodeSelected(currentNode);
         expect(currentNode.collapsed).to.eq(true);
       });
 
-      it('should expand node when it is collapsed', () => {
-        let currentNode = { collapsed: true };
+      it('should expand node when it is collapsed and selected', () => {
+        let currentNode = { selected: true, collapsed: true };
         controller.onNodeSelected(currentNode);
         expect(currentNode.collapsed).to.eq(false);
       });
 
-      it('should call method unselectAllNodes once', () => {
+      it('should emit treeSelectionChanged event with currentNode', () => {
         let currentNode = { collapsed: true };
-        controller.onNodeSelected(currentNode);
-        sinon.assert.calledOnce(controller.unselectAllNodes);
-      });
 
-      it('should call method onSelectionChange once', () => {
-        let currentNode = { collapsed: true };
         controller.onNodeSelected(currentNode);
-        sinon.assert.calledOnce(controller.onSelectionChange);
-      });
+        sinon.assert.calledOnce(scope.$emit);
+        sinon.assert.calledWith(scope.$emit, 'treeSelectionChanged', currentNode);
 
-      it('should set selected flag to true', () => {
-        let currentNode = { collapsed: true };
-        controller.onNodeSelected(currentNode);
-        expect(currentNode.selected).to.eq(true);
       });
-
     });
+
+    describe('$onChanges method', () => {
+      it('should emit treeSelectionChanged event with selectedNode.currentValue', () => {
+        let changesObj = { selectedNode: { currentValue: {}, isFirstChange: () => { return false } } };
+        controller.$onChanges(changesObj);
+        sinon.assert.calledOnce(scope.$emit);
+        sinon.assert.calledWith(scope.$emit, 'treeSelectionChanged', changesObj.selectedNode.currentValue);
+      })
+
+      it('should not emit treeSelectionChanged event', () => {
+        let changesObj = { selectedNode: { currentValue: {}, isFirstChange: () => { return true } } };
+        controller.$onChanges(changesObj);
+        sinon.assert.notCalled(scope.$emit);
+      })
+    });
+
+    describe('findANodeByValue method', () => {
+      it('should return empty when empty nodeList is provided', () => {
+        let nodeArray = [];
+        expect(controller.findANodeByValue(nodeArray, '')).to.eq(null);
+      })
+
+      it('should find and return valid node from nodeArray', () => {
+
+        let valueToBeFound = 'Italy',  nodeArray = [
+          {
+            value: 'Europe', children: [{ value: 'Italy', children: [{ value: 'Rome' }, { value: 'Milan' }] }]
+          },
+          {
+            value: 'South America'
+          }
+        ];
+        expect(controller.findANodeByValue(nodeArray, valueToBeFound)).to.eq(nodeArray[0].children[0]);
+      })
+    });
+
   });
 
   describe('View', () => {
