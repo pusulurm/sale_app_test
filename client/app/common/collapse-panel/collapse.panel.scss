@@ -2,18 +2,21 @@ section {
 
     .panel-heading {
         display: inline-block;
-
+        width: 100%;
         h3 {
             float: left;
             white-space: nowrap;
             font-size: 1.4em;
             margin: 0px;
             padding-right: 20px;
+            width: 80%;
         }
 
         span {
             float: right;
             font-size: 1.6em;
+            cursor : pointer;
+            margin-bottom: -3px;
         }
     }
 

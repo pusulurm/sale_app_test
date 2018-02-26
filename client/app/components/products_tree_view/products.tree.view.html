@@ -1,9 +1,12 @@
 <main>
   <div class="products-tree-view">
-
     <breadcrumb nodes="$ctrl.breadcrumbModel" on-node-clicked="$ctrl.onBreadcrumbSelectionChanged"></breadcrumb>
-
-    <tree-view is-root-element="$ctrl.isRootElement" on-selection-change="$ctrl.treeSelectionChange" node-list="$ctrl.nodesList" selected-node="$ctrl.selectedTreeNode">
-    </tree-view>
+    <hr />
+    <collapse-panel>
+      <tree-view is-root-element="$ctrl.isRootElement" on-selection-change="$ctrl.treeSelectionChange" node-list="$ctrl.nodesList"
+        selected-node="$ctrl.selectedTreeNode">
+      </tree-view>
+    </collapse-panel>
+    <hr />
   </div>
 </main>
