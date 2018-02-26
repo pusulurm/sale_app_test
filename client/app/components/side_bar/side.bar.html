@@ -1,14 +1,11 @@
 <main>
   <div class="filters-pane">
-    <h2>Sidebar Content Here</h2>
-    <star-rating rating-value="$ctrl.rating.current" max="$ctrl.rating.max" on-rating-selected="$ctrl.rating.getSelectedRating(rating)"></star-rating>
+      <!--<star-rating rating-value="$ctrl.rating.current" max="$ctrl.rating.max" on-rating-selected="$ctrl.rating.getSelectedRating(rating)"></star-rating>-->
 
-    <tree-view is-root-element="$ctrl.isRootElement" on-selection-change="$ctrl.treeSelectionChange" node-list="$ctrl.nodesList" selected-node="$ctrl.selectedTreeNode">
+    <!--<tree-view is-root-element="$ctrl.isRootElement" on-selection-change="$ctrl.treeSelectionChange" node-list="$ctrl.nodesList" selected-node="$ctrl.selectedTreeNode">
     </tree-view>
 
-    <breadcrumb nodes="$ctrl.breadcrumbModel" on-node-clicked="$ctrl.onBreadcrumbSelectionChanged"></breadcrumb>
-
-		<collection collection='$ctrl.tasks'></collection>
-
+    <breadcrumb nodes="$ctrl.breadcrumbModel" on-node-clicked="$ctrl.onBreadcrumbSelectionChanged"></breadcrumb>-->
+    <products-tree-view></products-tree-view>
   </div>
 </main>
