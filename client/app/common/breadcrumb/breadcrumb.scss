@@ -1,0 +1,30 @@
+.breadcrumb {
+    ul {
+        li {
+            float: left;
+            padding-left: 0px;
+            list-style-type: none;
+
+            span{
+                cursor : pointer;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            svg {
+                font-size: 1.5em;
+                margin: 2px 7px -4px 7px;
+            }
+
+            &:last-child {
+                color: deeppink;
+                svg {
+                    fill-opacity : 0
+                }
+            }
+        }
+    }
+    
+}
