@@ -1,7 +1,18 @@
-<main>
-  <div class="products-list">    
-    <collapse-panel panel-title="PRICE" is-collapsed="$ctrl.isFilterCollapsed">
-      <checkbox-list selectable-options="$ctrl.selectableOptions"></checkbox-list>
-    </collapse-panel>
+  <div class="products-list">
+    <div style="height: 80px">
+      <div class="pagination-section">
+        <div>Pagination Content</div>
+      </div>
+      <div class="sort-options">
+        <b>Sort By : </b>
+        <select>
+            <option ng-repeat="sortOption in prodList.sortOptions">{{sortOption}}</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <div ng-repeat="product in prodList.productsList">
+        <product details="product"></product>
+      </div>
+    </div>
   </div>
-</main>

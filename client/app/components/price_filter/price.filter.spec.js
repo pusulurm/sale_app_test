@@ -1,9 +1,9 @@
-import ProductsListModule from './products.list.module'
+import PriceFilterModule from './price.filter.module'
 
-describe('Products List', () => {
+describe('Price Filter', () => {
   let $rootScope, $componentController, $compile;
 
-  beforeEach(window.module(ProductsListModule));
+  beforeEach(window.module(PriceFilterModule));
 
   beforeEach(inject(($injector) => {
     $rootScope = $injector.get('$rootScope');
@@ -15,9 +15,13 @@ describe('Products List', () => {
     // controller specs
     let controller;
     beforeEach(() => {
-      controller = $componentController('productsList', {
+      controller = $componentController('priceFilter', {
         $scope: $rootScope.$new()
       });
+    });
+
+    it('has a selectableOptions property', () => { // erase if removing this.name from the controller
+      expect(controller).to.have.property('selectableOptions');
     });
   });
 
@@ -27,7 +31,7 @@ describe('Products List', () => {
 
     beforeEach(() => {
       scope = $rootScope.$new();
-      template = $compile('<products-list></products-list>')(scope);
+      template = $compile('<price-filter></price-filter>')(scope);
       scope.$apply();
     });
 

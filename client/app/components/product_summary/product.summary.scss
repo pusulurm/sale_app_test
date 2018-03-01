@@ -1,0 +1,28 @@
+@import "../../common/common";
+
+.product-summary {
+  width: 100%;
+  
+  text-align: center;
+  margin: 0 auto;
+  font-weight: bold;
+
+  .name {
+    font-size: 1.7em;
+  }
+
+  .price{
+    margin-top: 5px;
+
+    .actual-price{
+      font-size: 1.5em;
+      margin-right: 5px;
+      text-decoration: line-through;
+      color : #555;
+    }
+    .sale-price {
+      font-size: 1.8em;
+      color: $pinkHilighter;
+    }
+  }
+}

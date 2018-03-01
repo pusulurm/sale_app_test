@@ -5,7 +5,8 @@ import './products.list.scss';
 let productsListComponent = {
   bindings: {},
   template,
-  controller
+  controller,
+  controllerAs: 'prodList'
 };
 
 export default productsListComponent;

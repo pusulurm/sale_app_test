@@ -6,8 +6,7 @@ import './checkbox.list.scss';
 let CheckboxListComponent = {
   bindings: {
       selectableOptions : '<',
-      selectedOtpions :"="
-      
+      onSelectionChanged : "&"      
   },
   template,
   controller : CheckboxListController,

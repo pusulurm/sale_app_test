@@ -20,8 +20,18 @@ describe('Collapse Panel', () => {
       });
     });
 
-    it('should have isCollapsed property', () => {
-      expect(controller).to.have.property('isCollapsed');
+    describe('$onInit method', () => {
+      it('should set isCollapsed property to false if undefined', () => {
+        controller.$onInit(); 
+        expect(controller.isCollapsed).to.be.false;
+      });
+
+      it('should not set isCollapsed property to false if provides as true', () => {
+        controller.isCollapsed = true;
+        controller.$onInit(); 
+        expect(controller.isCollapsed).to.be.true;
+      });
+
     });
   });
 

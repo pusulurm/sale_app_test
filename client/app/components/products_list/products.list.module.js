@@ -1,28 +1,11 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ProductsListComponent from './products.list.component';
-import checkboxListModule from '../../common/check-box-list/checkbox.list.module';
-import collapsePanelModule from '../../common/collapse-panel/collapse.panel.module';
-let productsListModule = angular.module('productsListMod', [
-  uiRouter,
-  checkboxListModule,
-  collapsePanelModule
-])
 
-.config(($stateProvider, $urlRouterProvider) => {
-  "ngInject";
+var productsListModuleName = 'sephora.test.products.list';
 
-  $urlRouterProvider.otherwise('/');
 
-  // $stateProvider
-  //   .state('productsList', {
-  //     url: '/',
-  //     component: 'productsList'
-  //   });
-})
+angular.module(productsListModuleName, [])
+.component('productsList', ProductsListComponent);
 
-.component('productsList', ProductsListComponent)
-  
-.name;
-
-export default productsListModule;
+export default productsListModuleName;

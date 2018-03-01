@@ -1,3 +1,5 @@
+@import "../../common/common";
+
 .star-rating {
     color: #a9a9a9;
     margin: 0;
@@ -14,7 +16,7 @@
     }
 
     .filled {
-        color: orangered;
+        color : $pinkHilighter;
     }
 }
 

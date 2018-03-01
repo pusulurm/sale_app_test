@@ -1,16 +1,16 @@
 
 import template from './star.rating.html';
-import StarRatingController from './star.rating.controller';
+import controller from './star.rating.controller';
 import './star.rating.scss';
 
 let RatingComponent = {
   bindings: {    
     ratingValue: '=',
-    max: '=',
+    maxRating: '=',
     onRatingSelected: '&'
   },
   template,
-  controller : StarRatingController,
+  controller,
   controllerAs : 'starRate'
 };
 

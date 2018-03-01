@@ -1,11 +1,12 @@
-<div>
+<div class="checkbox-list">
     <table>
         <tbody>
             <tr ng-repeat="chkOption in chkListCtrl.selectableOptions">
                 <td>
-                    <label>
-                    <input type="checkbox" /> {{chkOption}}
-                </label>
+                    <label class="container">{{chkOption}}
+                        <input type="checkbox" ng-click="chkListCtrl.toggleSelection(chkOption)" /> 
+                        <span class="checkmark"></span>
+                        </label>
                 </td>
             </tr>
         </tbody>

@@ -50,6 +50,15 @@ class TreeViewController {
 		}
 	}
 
+	treeSelectionChangedEventHandler(node) {
+		var self = this;
+		self.unselectAllNodes();
+		let copy = self.findANodeByValue(self.nodeList, node.value);
+		self.expandCurrentTree(copy);
+		copy.selected = true;
+		self.onSelectionChange(copy);
+	}
+
 	$onInit() {
 		var self = this;
 		self.nodeList.forEach(node => {
@@ -65,6 +74,10 @@ class TreeViewController {
 				this.onSelectionChange(copy);
 			}
 		});
+
+		if (self.isRootElement) {
+			self.treeSelectionChangedEventHandler(self.nodeList[0])
+		}
 	}
 
 	findANodeByValue(nodeArray, value) {

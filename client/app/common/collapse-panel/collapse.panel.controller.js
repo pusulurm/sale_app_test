@@ -1,6 +1,10 @@
 class CollapsePanelController {
   constructor() {
-    this.isCollapsed = this.isCollapsed || false;
+      
+  }
+
+  $onInit() {
+      this.isCollapsed = this.isCollapsed || false;
   }
 }
 

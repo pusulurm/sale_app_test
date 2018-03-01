@@ -1,0 +1,8 @@
+<div class="product-summary">
+  <div class="name">{{prodSummary.productDetails.attributes.name}}</div>
+  <div class="price">
+    <span class="actual-price">${{prodSummary.productDetails.attributes.price | number:2}}</span>
+    <span class="sale-price">${{prodSummary.productDetails.attributes.sale_price | number:2}}</span>
+  </div>
+  <star-rating rating-value="prodSummary.productDetails.attributes.rating"></star-rating>
+</div>
