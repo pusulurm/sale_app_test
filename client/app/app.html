@@ -2,6 +2,6 @@
 <div class="app">
   <div class="top-bar"></div>
   <!--<div ui-view></div>-->
-  <sidebar></sidebar>
-  <products-list></products-list>
+  <sidebar selected-product-categories = "main.selectedProductCategories" selected-price-ranges="main.selectedPriceRanges"></sidebar>
+  <products-list categories="main.selectedProductCategories" price-ranges="main.selectedPriceRanges"></products-list>
 </div>

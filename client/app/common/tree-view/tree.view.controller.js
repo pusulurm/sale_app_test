@@ -59,6 +59,14 @@ class TreeViewController {
 		self.onSelectionChange(copy);
 	}
 
+	setTreeOptions() {
+		if (self.nodeList && self.nodeList.length > 0) {
+			self.nodeList.forEach(node => {
+				self.setParentOfChildNodes(node);
+			})
+		}
+	}
+
 	$onInit() {
 		var self = this;
 		self.nodeList.forEach(node => {

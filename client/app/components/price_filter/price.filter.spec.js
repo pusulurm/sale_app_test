@@ -1,3 +1,4 @@
+var sinon = require('sinon');
 import PriceFilterModule from './price.filter.module'
 
 describe('Price Filter', () => {
@@ -20,9 +21,14 @@ describe('Price Filter', () => {
       });
     });
 
-    it('has a selectableOptions property', () => { // erase if removing this.name from the controller
-      expect(controller).to.have.property('selectableOptions');
+    describe('$onInit method', () => {
+      it('should derive array of priceRanges based on ranges provided', () => {
+        controller.priceRanges = [{ label: "1" }, { label: "2" }];
+        controller.$onInit();
+        expect(controller.priceRangesArray).to.deep.eq(["1", "2"]);
+      })
     });
+
   });
 
   describe('View', () => {

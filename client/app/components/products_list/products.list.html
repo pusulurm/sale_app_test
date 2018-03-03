@@ -5,9 +5,8 @@
       </div>
       <div class="sort-options">
         <b>Sort By : </b>
-        <select>
-            <option ng-repeat="sortOption in prodList.sortOptions">{{sortOption}}</option>
-        </select>
+        <select ng-options="item as item.label for item in prodList.sortOptions track by item.value" 
+          ng-model="prodList.filters.sortBy" ng-change="prodList.onFiltersChange()"></select>
       </div>
     </div>
     <div>

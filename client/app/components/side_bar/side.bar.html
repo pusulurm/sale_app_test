@@ -1,4 +1,4 @@
   <div class="sidebar-pane">
-    <products-tree-view></products-tree-view>
-    <price-filter></price-filter>
+    <products-tree-view product-categories= "sideBar.productCategories" on-product-category-selection-change="sideBar.onProductCategoryChange"></products-tree-view>
+    <price-filter price-ranges = "sideBar.priceRanges" on-price-range-selection-change="sideBar.onPriceRangeChange"></price-filter>
   </div>

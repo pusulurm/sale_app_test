@@ -3,7 +3,10 @@ import controller from './price.filter.controller';
 import './price.filter.scss';
 
 let priceFilterComponent = {
-  bindings: {},
+  bindings: {
+    priceRanges : "<",
+    onPriceRangeSelectionChange : "&"
+  },
   template,
   controller,
   controllerAs : "priceFilter"

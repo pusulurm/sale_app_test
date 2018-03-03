@@ -3,7 +3,10 @@ import controller from './products.list.controller';
 import './products.list.scss';
 
 let productsListComponent = {
-  bindings: {},
+  bindings: {
+    priceRanges : "<",
+    categories : "<"
+  },
   template,
   controller,
   controllerAs: 'prodList'

@@ -1,4 +1,4 @@
-var sinon = require('sinon')
+var sinon = require('sinon');
 
 import treeViewModule from './tree.view.module'
 

@@ -3,9 +3,13 @@ import controller from './side.bar.controller';
 import './side.bar.scss';
 
 let sidebarComponent = {
-  bindings: {},
+  bindings: {
+    selectedProductCategories : "=",
+    selectedPriceRanges : "="
+  },
   template,
-  controller
+  controller,
+  controllerAs : 'sideBar'
 };
 
 export default sidebarComponent;

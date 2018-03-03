@@ -3,9 +3,13 @@ import controller from './products.tree.view.controller';
 import './products.tree.view.scss';
 
 let productsTreeViewComponent = {
-  bindings: {},
+  bindings: {
+    productCategories : "<",
+    onProductCategorySelectionChange : "&"
+  },
   template,
-  controller
+  controller,
+  controllerAs : 'prodCat'
 };
 
 export default productsTreeViewComponent;
