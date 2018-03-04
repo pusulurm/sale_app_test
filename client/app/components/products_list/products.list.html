@@ -1,17 +1,17 @@
-  <div class="products-list">
-    <div style="height: 80px">
-      <div class="pagination-section">
-        <div>Pagination Content</div>
-      </div>
-      <div class="sort-options">
-        <b>Sort By : </b>
-        <select ng-options="item as item.label for item in prodList.sortOptions track by item.value" 
-          ng-model="prodList.filters.sortBy" ng-change="prodList.onFiltersChange()"></select>
-      </div>
+<div class="products-list">
+  <div style="height: 80px">
+    <div class="pagination-section">
+      <pagination></pagination>
     </div>
-    <div>
-      <div ng-repeat="product in prodList.productsList">
-        <product details="product"></product>
-      </div>
+    <div class="sort-options">
+      <b>Sort By : </b>
+      <select ng-options="item as item.label for item in prodList.sortOptions track by item.value" ng-model="prodList.filters.sortBy"
+        ng-change="prodList.onFiltersChange()"></select>
     </div>
   </div>
+  <div>
+    <div ng-repeat="product in prodList.productsList">
+      <product details="product"></product>
+    </div>
+  </div>
+</div>
