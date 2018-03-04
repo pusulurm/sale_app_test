@@ -1,10 +1,10 @@
 <div class="products-list">
-  <div style="height: 80px">
+  <div class="header-section">
     <div class="pagination-section">
-      <pagination></pagination>
+      <pagination total-pages="prodList.totalPagesAvailable" on-pagination-change="prodList.onPaginationChanged"></pagination>
     </div>
     <div class="sort-options">
-      <b>Sort By : </b>
+      <b>Sort By: </b>
       <select ng-options="item as item.label for item in prodList.sortOptions track by item.value" ng-model="prodList.filters.sortBy"
         ng-change="prodList.onFiltersChange()"></select>
     </div>
@@ -14,4 +14,5 @@
       <product details="product"></product>
     </div>
   </div>
+  <div ng-if="!prodList.productsList || prodList.productsList.length ===0" class="no-items"><h1> - No Items Found - </h1></div>
 </div>

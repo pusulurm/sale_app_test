@@ -12,12 +12,8 @@ export const sortOptions = [
 export var defaultFilters = {
     sortBy: { label: "Name (A to Z)", value: "name" },
     pageSize: 30,
-    currentPage: 0,
-    category: "makeup,brushes,tools",
-    priceRange : {
-        lt : 150,
-        gt : 100
-    }
+    pageNumber : 1,
+    category: "makeup,brushes,tools"
 }
 
 export const productCategories = [{
@@ -54,5 +50,8 @@ export const queryStringOptions = {
         priceGreaterThan : "&filter[sale_price_gt]="
     },
     sort: "&sort=",
-    pageSize: "&page[size]="
+    pageSize: "&page[size]=",
+    pageNumber : "&page[number]="
 }
+
+export const pageNumberQueryString = "page[number]="

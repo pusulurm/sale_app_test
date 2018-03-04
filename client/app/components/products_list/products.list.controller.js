@@ -3,11 +3,16 @@ class ProductsListController {
     this.productsListService = productsListService;
     this.productsLookupService = productsLookupService;
     this.$onChanges = this.$onChanges.bind(this);
+    this.onPaginationChanged = this.onPaginationChanged.bind(this);
+
   }
 
-  refreshProductsBasedOnFilter() {
-    this.productsListService.getProductDetails(this.filters).then(products => {
-      this.productsList = products;
+  refreshProductsBasedOnFilter(doNotRefreshPagination) {
+    this.productsListService.getProductDetails(this.filters, doNotRefreshPagination).then(productsResponse => {
+      this.productsList = productsResponse.data;
+      if (!doNotRefreshPagination) {
+        this.totalPagesAvailable = productsResponse.pageNumber;
+      }
     })
   }
 
@@ -19,14 +24,24 @@ class ProductsListController {
 
   $onChanges(changes) {
     if (!this.filters) return;
-
+  
     this.filters.category = changes.categories ? changes.categories.currentValue : "";
-    this.filters.priceRange = changes.priceRanges ? changes.priceRanges.currentValue : null;
+    if (changes.priceRanges) {
+      this.filters.priceRange = changes.priceRanges ? changes.priceRanges.currentValue : null;
+    } 
+    this.filters.pageNumber = 1;
     this.refreshProductsBasedOnFilter();
   }
 
   onFiltersChange() {
     this.refreshProductsBasedOnFilter();
+  }
+
+  onPaginationChanged(newPagination) {
+    let doNotRefreshPagination = newPagination.pageSize === this.filters.pageSize;
+    this.filters.pageNumber = newPagination.currentPage;
+    this.filters.pageSize = newPagination.pageSize;
+    this.refreshProductsBasedOnFilter(doNotRefreshPagination);
   }
 }
 

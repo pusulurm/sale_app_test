@@ -65,4 +65,29 @@ describe('products.lookup.service', () => {
             expect(finalUrl.indexOf(expectedQueryStringPart)).to.gt(-1);
         })
     });
+
+    describe("prepareResponse method", ()=>{
+        let response = {};
+
+        beforeEach(() =>{
+             response = {
+                data : {
+                    links : {
+                        last : "https://sephora-api-frontend-test.herokuapp.com/products?filter%5Bcategory_eq%5D=tools&page%5Bnumber%5D=3&page%5Bsize%5D=25"
+                    },
+                    data : []
+                }
+            };
+        });
+        it("should read pageNumber from response links and return", ()=>{
+            
+            let result = productsListServiceObj.prepareResponse(response);
+            expect(result.pageNumber).to.eq(3);
+        })
+
+        it("should not read pageNumber from response when 'doNotRefreshPagination' parameter is true", ()=>{
+            let result = productsListServiceObj.prepareResponse(response, true);
+            expect(result.pageNumber).to.eq(undefined);
+        })
+    })
 })

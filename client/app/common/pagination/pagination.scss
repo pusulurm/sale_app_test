@@ -1,11 +1,54 @@
+@import "../../common/common";
+
 .pagination {
         height: 37px;
         margin: 0;
-        padding: 0 80px;
         vertical-align: middle;
         background-color: #fff;
-        background-image: none;
-        border: 1px solid #ccc;
-        border-radius: 6px;
         line-height: 42px;
+        font-size: 1.1em;
+
+        .page-sizes{
+            float: left;
+            select {
+                height: 40px;
+                margin-top: -7px;
+                padding: 0 12px;
+                vertical-align: middle;
+                background-color: #fff;
+                background-image: none;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+            }
+        }
+
+        .page-numbers{
+            float: left;
+            .activePage{
+                color: $pinkHilighter;
+                font-weight: bolder;
+            }
+
+            a {
+                cursor: pointer;
+            }
+
+            ul {
+            list-style-type: none;
+            li {
+                float: left;
+                padding: 0px 8px 0px 8px;
+
+                &:last-child  {
+                    padding-left: 12px;
+                }
+
+                span svg {
+                    font-size: 1.3em;
+                    cursor: pointer;
+                    margin-bottom: -2px;
+                }
+            }
+            }
+        }        
 }

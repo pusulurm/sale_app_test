@@ -1,3 +1,33 @@
 <div class="pagination">
-    <div>Pagination Content</div>
+    <div class="page-sizes">
+        <b>View: </b>
+        <select ng-options="pageSize as pageSize for pageSize in paginate.allPageSizes" ng-model="paginate.pageSize" ng-change="paginate.informPaginationChange()"></select>
+    </div>
+    <div class="page-numbers">
+        <!-- pager -->
+        <ul ng-if="paginate.pager.pages.length" class="pagination">
+            <li ng-if="paginate.pager.pages[0] != 1">
+                <span ng-click="paginate.selectPreviousPage()"><i class="fas fa-caret-left"></i></span>
+            </li>
+            <li ng-if="paginate.pager.pages[0] != 1">
+                <a ng-click="paginate.setPage(1)">1</a>
+            </li>
+            <li title="Previous Page" ng-if="paginate.pager.pages[0] != 1">
+                <a ng-click="paginate.getPreviousPagesList(paginate.pager.pages)">...</a>
+            </li>
+            <li ng-repeat="page in paginate.pager.pages" ng-class="{activePage:paginate.pager.currentPage === page}">
+                <a ng-click="paginate.setPage(page)">{{page}}</a>
+            </li>
+            <li ng-if="paginate.pager.pages[paginate.pager.pages.length-1] != paginate.pager.endPage">
+                <a ng-click="paginate.getNextPagesList(paginate.pager.pages)">...</a>
+            </li>
+            <li ng-if="paginate.pager.pages[paginate.pager.pages.length-1] != paginate.pager.endPage">
+                <a ng-click="paginate.setPage(paginate.pager.totalPages)">{{paginate.pager.totalPages}}</a>
+            </li>
+            <li title="Next Page" ng-if="paginate.pager.pages[paginate.pager.pages.length-1] != paginate.pager.endPage">
+                <span ng-click="paginate.selectNextPage()"><i class="fas fa-caret-right"></i></span>
+            </li>
+        </ul>
+    </div>
+
 </div>

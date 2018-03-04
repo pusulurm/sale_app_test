@@ -31,21 +31,56 @@ class ProductsList {
         if (selectedFilters.sortBy) {
             queryString += productConfig.queryStringOptions.sort + selectedFilters.sortBy.value;
         }
+        
         if (selectedFilters.pageSize) {
             queryString += productConfig.queryStringOptions.pageSize + selectedFilters.pageSize;
+        }
+
+        if (selectedFilters.pageNumber) {
+            queryString += productConfig.queryStringOptions.pageNumber + selectedFilters.pageNumber;
         }
 
         return productConfig.productsBaseUrl + queryString;
     }
 
-    getProductDetails(selectedFilters) {
-        let deferred = this.$q.defer();
+    addMockedRatings(productData){
+        //As API is not returning rating info, mocking with a random rating
+
+        if(!productData || productData.length === 0){
+            return;
+        }
+        productData.forEach(product => {
+            product.attributes.rating = Math.floor(Math.random() * 5) + 1 ;
+        });
+        
+    }
+
+    prepareResponse(response, doNotRefreshPagination){
+        if(!response || !response.data){
+            return [];
+        }
+        let queryStringValues = [];
+
+        this.addMockedRatings (response.data.data);
+
+        if(!doNotRefreshPagination && response.data.links && response.data.links.last){
+            queryStringValues = decodeURI(response.data.links.last).split("&")
+            let pageNumberIndex = queryStringValues.findIndex(params => params.indexOf(productConfig.pageNumberQueryString) > -1);
+            let pageNumber = queryStringValues[pageNumberIndex].split("=")[1];
+            return {pageNumber : parseInt(pageNumber), data : response.data.data};
+        }
+        return { data : response.data.data};
+
+    }
+
+    getProductDetails(selectedFilters, doNotRefreshPagination) {
+        let self = this, deferred = this.$q.defer();
 
         this.$http({
             method: 'GET',
             url: this.prepareUrl(selectedFilters)
         }).then(response => {
-            deferred.resolve((response && response.data) ? response.data.data : []);
+            deferred.resolve(self.prepareResponse(response, doNotRefreshPagination));
         }, err => {
             //Log this error to server.
             deferred.resolve([]);

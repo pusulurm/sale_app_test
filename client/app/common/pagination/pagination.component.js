@@ -5,7 +5,8 @@ import './pagination.scss';
 
 let PaginationComponent = {
   bindings: {
-         
+      totalPages : "<",
+      onPaginationChange : "&"
   },
   template,
   controller : PaginationController,

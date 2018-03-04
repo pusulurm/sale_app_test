@@ -1,16 +1,20 @@
 .products-list {
   float: left;
   width: 78%;
+  
+  .header-section {
+    height: 70px;
+  }
+
   .pagination-section {
       float: right;
       margin: 15px 10% 15px 0;
       font-size: 1.5em;
-    }
-
+  }
 
   .sort-options {
     float: right;
-    margin: 15px 30px;
+    margin: 15px 20px;
     font-size: 1.5em;
     select {
           height: 40px;
@@ -21,6 +25,11 @@
           background-image: none;
           border: 1px solid #ccc;
           border-radius: 3px;
+    }
+
+    .no-items{
+          margin-top: 10%;
+          text-align: center;
     }
   }
 }
