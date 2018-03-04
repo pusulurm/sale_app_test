@@ -21,27 +21,4 @@ describe('Products List', () => {
       });
     });
   });
-
-  // describe('View', () => {
-  //   // view layer specs.
-  //   let scope, template;
-
-  //   beforeEach(() => {
-  //     scope = $rootScope.$new();
-  //     scope.refreshProductsBasedOnFilter = sinon.spy();
-  //     scope.productsListService = {
-  //       getProductDetails : sinon.spy()
-  //     }
-  //     template = $compile('<products-list></products-list>')(scope);
-  //     scope.$apply();
-  //   });
-
-  //   it('has collapse-panel in template', () => {
-  //     expect(template.find('collapse-panel')).to.not.null;
-  //   });
-
-  //   it('has checkbox-list in template', () => {
-  //     expect(template.find('checkbox-list')).to.not.null;
-  //   });
-  // });
 });
