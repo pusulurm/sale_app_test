@@ -1,4 +1,4 @@
-import ProductsListModule from './products.list.module'
+import ProductsListModule from '../products.list.module'
 var sinon = require('sinon');
 
 describe('Products List', () => {

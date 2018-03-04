@@ -7,6 +7,11 @@ class ProductsList {
     }
 
     prepareUrl(selectedFilters) {
+
+        if(!selectedFilters){
+            return productConfig.productsBaseUrl;
+        }
+
         let queryString = "?";
 
         if (selectedFilters.category) {
