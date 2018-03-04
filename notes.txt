@@ -1,4 +1,5 @@
-1) As API is not supporting multiple Price ranges, filteres are designed to load products betwwen min and max rates selected by user.
+1) As API is not supporting multiple Price ranges, 
+   filteres are designed to load products between min and max rates selected by user.
    For Instance, User selected "Below $25, $25 - $50 and $150 - $300", then system treats this range as "below $300"
 2) Mocked Ratings. As Rating details are not provided by current API, I've randomly picked rates betwen 3and 5.
-3) Product Category options are limited as API is returning 3 categories data only. "tools", "brushes", "markup"
+3) Product Category options (Tree View) are limited as API is returning 3 categories data only. "tools", "brushes", "markup"

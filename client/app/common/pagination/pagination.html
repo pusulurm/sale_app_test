@@ -1,7 +1,8 @@
 <div class="pagination">
     <div class="page-sizes">
         <b>View: </b>
-        <select ng-options="pageSize as pageSize for pageSize in paginate.allPageSizes" ng-model="paginate.pageSize" ng-change="paginate.informPaginationChange()"></select>
+        <select ng-options="pageSize as pageSize for pageSize in paginate.allPageSizes" ng-model="paginate.pageSize" 
+        ng-change="paginate.onPageSizeChange()"></select>
     </div>
     <div class="page-numbers">
         <!-- pager -->

@@ -51,6 +51,11 @@ class PaginationController {
 		this.informPaginationChange();
 	}
 
+	onPageSizeChange(){
+		this.pager.currentPage= 1;
+		this.informPaginationChange();
+	}
+
 	$onChanges(changes) {
 		if (changes.totalPages.currentValue) {
 			this.pager = this.paginationService.GetPager(changes.totalPages.currentValue, 1, this.pageSize, this.showPagesCount);
