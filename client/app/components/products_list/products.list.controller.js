@@ -4,11 +4,12 @@ class ProductsListController {
     this.productsLookupService = productsLookupService;
     this.$onChanges = this.$onChanges.bind(this);
     this.onPaginationChanged = this.onPaginationChanged.bind(this);
-
+    this.productsListPromise = null;
   }
 
   refreshProductsBasedOnFilter(doNotRefreshPagination) {
-    this.productsListService.getProductDetails(this.filters, doNotRefreshPagination).then(productsResponse => {
+    this.productsListPromise  = this.productsListService.getProductDetails(this.filters, doNotRefreshPagination);
+    this.productsListPromise.then(productsResponse => {
       this.productsList = productsResponse.data;
       if (!doNotRefreshPagination) {
         this.totalPagesAvailable = productsResponse.pageNumber;

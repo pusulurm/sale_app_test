@@ -5,6 +5,7 @@ import treeViewModule from './tree-view/tree.view.module';
 import ratingModule from './star-rating/star.rating.module';
 import breadcrumbModule from './breadcrumb/breadcrumb.module';
 import paginationModule from './pagination/pagination.module';
+import SpinnerModule from './spinner/spinner.module';
 
 let commonModule = angular.module('app.common', [
   checkboxListModule,
@@ -12,7 +13,8 @@ let commonModule = angular.module('app.common', [
   treeViewModule,
   ratingModule,
   breadcrumbModule,
-  paginationModule
+  paginationModule,
+  SpinnerModule
 ])
   
 .name;
