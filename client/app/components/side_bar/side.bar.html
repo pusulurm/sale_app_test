@@ -1,4 +1,11 @@
-  <div class="sidebar-pane">
-    <products-tree-view product-categories= "sideBar.productCategories" on-product-category-selection-change="sideBar.onProductCategoryChange"></products-tree-view>
-    <price-filter price-ranges = "sideBar.priceRanges" on-price-range-selection-change="sideBar.onPriceRangeChange"></price-filter>
+<div class="sidebar">
+  <div class="menu">
+    <span ng-mouseover="sideBar.menuOpen=true" ng-mouseleave="sideBar.menuOpen=false">
+      <i class="fas fa-bars"></i>
+    </span>
+    <div ng-mouseover="sideBar.menuOpen=true" ng-mouseleave="sideBar.menuOpen=false" class="pane" ng-class="{'show-pane' : sideBar.menuOpen, 'hide-pane' : !sideBar.menuOpen}">
+      <products-tree-view product-categories="sideBar.productCategories" on-product-category-selection-change="sideBar.onProductCategoryChange"></products-tree-view>
+      <price-filter price-ranges="sideBar.priceRanges" on-price-range-selection-change="sideBar.onPriceRangeChange"></price-filter>
+    </div>
   </div>
+</div>

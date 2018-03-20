@@ -1,6 +1,52 @@
-.sidebar-pane {
+@import '../../common/common';
+
+.sidebar {
+  height: 100%;
   float: left;
   width: 18%;
-  margin-left: 4%;
-  font-size: 1.5em;
+  margin-left: 3%;
+
+  .menu{
+      margin: 20px;
+      font-size: 1.5em;
+      span:hover {
+        color: $pinkHilighter;
+      }
+      .pane {
+      }
+  }
+}
+
+/* tablet */
+@media all and (max-width: 908px) {
+    .sidebar {    
+      .menu{
+          margin: 20px;
+          font-size: 1.5em;
+          span:hover {
+            color: $pinkHilighter;
+          }
+          .pane {
+            margin-top: 35px;
+            height: 100%; /* 100% Full-height */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Stay on top */
+            top: 0; /* Stay at the top */
+            left:0;
+            padding-left: 10px;
+            background-color: $bgColor; /* Black*/
+            overflow-x: hidden; /* Disable horizontal scroll */
+            padding-top: 60px; /* Place content 60px from the top */
+            transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+          }
+
+          .show-pane{
+            display: block;
+          }
+
+          .hide-pane{
+            display: none;
+          }
+      }
+    }
 }

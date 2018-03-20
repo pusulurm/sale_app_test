@@ -9,6 +9,7 @@ let SpinnerComponent = {
   },
   template,
   controller,
+  replace: true,
   controllerAs : 'spinner'
 };
 

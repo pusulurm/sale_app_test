@@ -23,3 +23,8 @@ body {
    background-color: $whiteColor;
 }
 
+@media all and (max-width: 908px) {
+    body {
+        font-size: 75%;
+    }
+}

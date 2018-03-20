@@ -3,9 +3,12 @@
 .checkbox-list{
     table {
         line-height: 1.6em;
-               
+         label {
+             white-space: nowrap;
+         }      
          label:hover {
                 text-decoration: underline;
+
         }
 
         .container {

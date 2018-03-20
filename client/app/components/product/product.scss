@@ -9,3 +9,17 @@
     height : 190px;
   }
 }
+
+/* tablet */
+@media all and (max-width: 908px) {
+    .product {
+      width : 48%;
+    }
+}
+
+/* mobile phone */
+@media all and (max-width: 600px) {
+    .product {
+      width : 100%;
+    }
+}

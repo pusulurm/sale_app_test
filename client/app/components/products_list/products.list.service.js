@@ -90,6 +90,6 @@ class ProductsList {
     }
 }
 
-ProductsList.$inject = ['$http', '$q'];
+ProductsList.$inject = ['$http', '$q' ];
 
 export default ProductsList;
